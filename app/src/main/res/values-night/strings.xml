@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_img">kosong</string>
+    <string name="empty_description">kosong desc</string>
+    <string name="not_permission">not permission</string>
+</resources>

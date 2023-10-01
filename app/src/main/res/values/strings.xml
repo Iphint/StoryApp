@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">newest</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Bagi moment terindah kamu.</string>
+    <string name="title_welcome_page">Selamat datang di Dicoding Story App!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap untuk upgrade skill?</string>
+    <string name="name">Nama</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="empty_img">kosong</string>
+    <string name="empty_description">kosong desc</string>
+    <string name="not_permission">not permission</string>
+    <string name="loginExist">Login</string>
+    <string name="belum_punya_akun">belum punya akun ?</string>
+    <string name="registerExist">Register</string>
+    <string name="sudah_punya_akun">sudah punya akun ?</string>
+    <string name="tambah">Tambah</string>
+    <string name="maps">Maps</string>
+</resources>
