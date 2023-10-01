@@ -9,6 +9,7 @@
     <string name="password">Password</string>
     <string name="message_login_page">Masukkan dulu datamu ya</string>
     <string name="title_login_page">Sudah siap untuk upgrade skill?</string>
+    <string name="invalid_email">Email salah</string>
     <string name="name">Nama</string>
     <string name="greeting">Halo %1$s,</string>
     <string name="logout">Keluar</string>
@@ -22,4 +23,5 @@
     <string name="sudah_punya_akun">sudah punya akun ?</string>
     <string name="tambah">Tambah</string>
     <string name="maps">Maps</string>
+    <string name="invalid_password">Password salah</string>
 </resources>
