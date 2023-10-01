@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-        app:startIconDrawable="@drawable/baseline_alternate_email_24"
+        app:startIconDrawable="@drawable/baseline_text_fields_24"
         tools:alpha="100">
 
 <!--        <com.google.android.material.textfield.TextInputEditText-->
@@ -71,7 +71,7 @@
 <!--            android:ems="10"-->
 <!--            android:inputType="text" />-->
 <!--        -->
-        <com.arifin.newest.view.custom.NameEditText
+        <com.arifin.newest.view.custom.CustomEditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
 <!--            android:ems="10"-->
 <!--            android:inputType="textEmailAddress" />-->
 
-        <com.arifin.newest.view.custom.EmailEditText
+        <com.arifin.newest.view.custom.CustomEmail
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
 <!--            android:ems="10"-->
 <!--            android:inputType="textPassword" />-->
 
-        <com.arifin.newest.view.custom.PasswordEditText
+        <com.arifin.newest.view.custom.CustomPassword
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

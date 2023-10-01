@@ -12,7 +12,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.arifin.newest.R
 
-class NameEditText:AppCompatEditText, View.OnTouchListener {
+class CustomEditText:AppCompatEditText, View.OnTouchListener {
 
     private lateinit var clearButtonImage: Drawable
     private lateinit var iconFormInput: Drawable

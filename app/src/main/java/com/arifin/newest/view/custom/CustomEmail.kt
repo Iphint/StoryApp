@@ -5,16 +5,15 @@ import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.arifin.newest.R
 
-class PasswordEditText:AppCompatEditText {
+class CustomEmail:AppCompatEditText {
+
     private lateinit var iconFormInput: Drawable
-    private var characterLength = 0
 
     constructor(context: Context) : super(context) {
         init()
@@ -33,38 +32,37 @@ class PasswordEditText:AppCompatEditText {
     }
 
     private fun init() {
-        iconFormInput =
-            ContextCompat.getDrawable(context, R.drawable.baseline_lock_24) as Drawable
-        showIconFormInput()
+        iconFormInput = ContextCompat.getDrawable(context, R.drawable.baseline_alternate_email_24) as Drawable
         addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Do Nothing
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Do nothing.
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                characterLength = s.length
-                if (s.isNotEmpty() && characterLength < 8) {
-                    error = context.getString(R.string.invalid_password)
-                }
+                showIconFormInput()
+                error = if (s.isNotEmpty()) {
+                    if (!s.toString().matches(Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))) {
+                        context.getString(R.string.invalid_email)
+                    } else null
+                } else null
             }
 
-            override fun afterTextChanged(s: Editable?) {
-                // Do Nothing
+            override fun afterTextChanged(s: Editable) {
+                // Do nothing.
             }
-
         })
     }
 
     private fun showIconFormInput() {
-        setButtonDrawable(startOfTheText = iconFormInput)
+        setButtonDrawables(startOfTheText = iconFormInput)
     }
 
-    private fun setButtonDrawable(
+    private fun setButtonDrawables(
         startOfTheText: Drawable? = null,
         topOfTheText: Drawable? = null,
         endOfTheText: Drawable? = null,
         bottomOfTheText: Drawable? = null
-    ) {
+    ){
         setCompoundDrawablesWithIntrinsicBounds(
             startOfTheText,
             topOfTheText,
@@ -73,17 +71,16 @@ class PasswordEditText:AppCompatEditText {
         )
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         context.apply {
             setTextColor(ContextCompat.getColor(this, R.color.black))
-            hint = context.getString(R.string.password)
+            hint = context.getString(R.string.email)
             textSize = 16f
             setHintTextColor(ContextCompat.getColor(this, R.color.navy))
             background = ContextCompat.getDrawable(this, R.drawable.form_input)
         }
-        maxLines = 1
+        isSingleLine = true
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-        transformationMethod = PasswordTransformationMethod.getInstance()
     }
 }

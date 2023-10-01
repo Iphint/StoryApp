@@ -87,7 +87,7 @@
 <!--            android:inputType="textEmailAddress"-->
 <!--            tools:ignore="SpeakableTextPresentCheck" />-->
 
-        <com.arifin.newest.view.custom.EmailEditText
+        <com.arifin.newest.view.custom.CustomEmail
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
 <!--            android:inputType="textPassword"-->
 <!--            tools:ignore="SpeakableTextPresentCheck" />-->
 
-        <com.arifin.newest.view.custom.PasswordEditText
+        <com.arifin.newest.view.custom.CustomPassword
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
