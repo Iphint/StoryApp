@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -20,11 +21,14 @@ import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var loadingProgressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingProgressBar = binding.progressBar
 
         binding.allreadyLogin.setOnClickListener {
             val i = Intent(this,LoginActivity::class.java)
@@ -56,6 +60,8 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
+            showLoading()
+
             sendRegistrationData(name, email, password)
         }
     }
@@ -66,6 +72,16 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun isPasswordValid(password: String): Boolean {
         return password.length >= 8
+    }
+
+    private fun showLoading() {
+        loadingProgressBar.visibility = View.VISIBLE
+        binding.signupButton.visibility = View.GONE
+    }
+
+    private fun hideLoading() {
+        loadingProgressBar.visibility = View.GONE
+        binding.signupButton.visibility = View.VISIBLE
     }
 
     private fun sendRegistrationData(name: String, email: String, password: String) {
@@ -89,6 +105,8 @@ class RegisterActivity : AppCompatActivity() {
                             setTitle("Yeah!")
                             setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan bagikan moment anda.")
                             setPositiveButton("Lanjut") { _, _ ->
+                                val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                                startActivity(intent)
                                 finish()
                             }
                             create()
@@ -116,6 +134,7 @@ class RegisterActivity : AppCompatActivity() {
                         show()
                     }
                 }
+                hideLoading()
             }
         }
     }

@@ -9,10 +9,12 @@ import android.telecom.Call
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewModelScope
+import com.arifin.newest.R
 import com.arifin.newest.data.preference.UserModel
 import com.arifin.newest.data.preference.UserPreference
 import com.arifin.newest.data.preference.dataStore
@@ -31,11 +33,14 @@ class LoginActivity : AppCompatActivity() {
     }
     private lateinit var binding: ActivityLoginBinding
     private lateinit var userPreference: UserPreference
+    private lateinit var loadingProgressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingProgressBar = binding.loadingProgressBar
 
         binding.allreadyRegister.setOnClickListener {
             val i = Intent(this, RegisterActivity::class.java)
@@ -86,6 +91,8 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            showLoading()
+
             viewModel.login(email, password,
                 onSuccess = { token ->
                     viewModel.viewModelScope.launch {
@@ -96,19 +103,35 @@ class LoginActivity : AppCompatActivity() {
                         finish()
                     }
                 },
-                onError = { errorMessage ->
-                    AlertDialog.Builder(this@LoginActivity).apply {
-                        setTitle("Oops!")
-                        setMessage(errorMessage)
-                        setPositiveButton("OK", null)
-                        create()
-                        show()
-                    }
+                onError = {
+                    hideLoading()
+                    showErrorDialog("Email atau password anda tidak terdaftar di sistem.")
                 }
             )
         }
     }
 
+    private fun showLoading() {
+        loadingProgressBar.visibility = View.VISIBLE
+        binding.loginButton.visibility = View.GONE
+    }
+
+    private fun hideLoading() {
+        loadingProgressBar.visibility = View.GONE
+        binding.loginButton.visibility = View.VISIBLE
+    }
+
+    private fun showErrorDialog(errorMessage: String) {
+        runOnUiThread {
+            AlertDialog.Builder(this@LoginActivity).apply {
+                setTitle("Oops!")
+                setMessage(errorMessage)
+                setPositiveButton("OK", null)
+                create()
+                show()
+            }
+        }
+    }
 
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
